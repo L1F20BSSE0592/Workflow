@@ -1,0 +1,25 @@
+name: Example Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - add-workflows
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  show-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Show current branch
+        run: echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
+
+      - name: Checkout to main branch
+        run: |
+          git checkout main
+          echo "Checked out to main branch"
